@@ -40,3 +40,11 @@ sections.forEach((section)=>{
     observer.observe(section);
 
 });
+// Clear contact form whenever the portfolio page loads
+window.addEventListener("pageshow", function () {
+    const contactForm = document.querySelector(".contact-form");
+
+    if (contactForm) {
+        contactForm.reset();
+    }
+});
