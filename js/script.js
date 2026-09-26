@@ -129,42 +129,122 @@ backToTop.addEventListener("click", () => {
     });
 
 });
+
 // ============================
-// Project Filter
+// Fetch Project Data
 // ============================
 
-const filterButtons = document.querySelectorAll(".filter-btn");
-const projectCards = document.querySelectorAll(".project-card");
+const projectsContainer = document.getElementById("projects-container");
 
-filterButtons.forEach((button) => {
+fetch("projects.json")
+    .then((response) => response.json())
+    .then((projects) => {
 
-    button.addEventListener("click", () => {
+        projectsContainer.innerHTML = "";
 
-        const selectedFilter = button.dataset.filter;
+        projects.forEach((project) => {
 
-        // Change active button
-        filterButtons.forEach((btn) => {
-            btn.classList.remove("active");
+            const projectCard = document.createElement("div");
+
+            projectCard.className = "project-card col-12 col-md-6";
+            projectCard.dataset.category = project.category;
+
+            projectCard.innerHTML = `
+                <div class="project-images">
+
+                    <a href="${project.images[0].src}" target="_blank" rel="noopener noreferrer">
+                        <img
+                            src="${project.images[0].src}"
+                            alt="${project.images[0].alt}"
+                        >
+                    </a>
+
+                    <a href="${project.images[1].src}" target="_blank" rel="noopener noreferrer">
+                        <img
+                            src="${project.images[1].src}"
+                            alt="${project.images[1].alt}"
+                        >
+                    </a>
+
+                </div>
+
+                <div class="project-content">
+
+                    <h3>${project.name}</h3>
+
+                    <div class="tech-stack">
+                        ${project.technologies
+                            .map((tech) => `<span>${tech}</span>`)
+                            .join("")}
+                    </div>
+
+                    <p>${project.description}</p>
+
+                    <div class="project-buttons">
+
+                        <a
+                            href="${project.liveDemo}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-primary primary-btn"
+                        >
+                            Live Demo
+                        </a>
+
+                        <a
+                            href="${project.github}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-outline-primary secondary-btn"
+                        >
+                            GitHub
+                        </a>
+
+                    </div>
+
+                </div>
+            `;
+
+            projectsContainer.appendChild(projectCard);
         });
 
-        button.classList.add("active");
+        // Re-enable project filtering after cards are loaded
+        const loadedProjectCards =
+            document.querySelectorAll(".project-card");
 
-        // Filter projects
-        projectCards.forEach((project) => {
+        filterButtons.forEach((button) => {
 
-            const projectCategory = project.dataset.category;
+            button.addEventListener("click", () => {
 
-            if (
-                selectedFilter === "all" ||
-                projectCategory === selectedFilter
-            ) {
-                project.classList.remove("filter-hidden");
-            } else {
-                project.classList.add("filter-hidden");
-            }
+                const selectedFilter = button.dataset.filter;
+
+                filterButtons.forEach((btn) => {
+                    btn.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                loadedProjectCards.forEach((project) => {
+
+                    const projectCategory =
+                        project.dataset.category;
+
+                    if (
+                        selectedFilter === "all" ||
+                        projectCategory === selectedFilter
+                    ) {
+                        project.classList.remove("filter-hidden");
+                    } else {
+                        project.classList.add("filter-hidden");
+                    }
+
+                });
+
+            });
 
         });
 
+    })
+    .catch((error) => {
+        console.error("Error loading projects:", error);
     });
-
-});

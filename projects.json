@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Craftopia – Handmade E-Commerce Website",
+    "category": "ecommerce",
+    "images": [
+      {
+        "src": "images/craftopia1.png",
+        "alt": "Craftopia Homepage"
+      },
+      {
+        "src": "images/craftopia2.png",
+        "alt": "Craftopia Shop Page"
+      }
+    ],
+    "technologies": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Firebase",
+      "GitHub"
+    ],
+    "description": "Developed a responsive handmade-products e-commerce website featuring 30+ products, product detail pages, search, category and price filtering, sorting, shopping cart, wishlist, customer reviews, and WhatsApp-based ordering. Integrated Firebase Authentication and Cloud Firestore for user authentication and product reviews.",
+    "liveDemo": "https://maviyaminza.github.io/Craftopia/",
+    "github": "https://github.com/maviyaminza/Craftopia"
+  },
+  {
+    "name": "FreshSip – Responsive Juice Ordering Website",
+    "category": "web",
+    "images": [
+      {
+        "src": "images/Fruitjuice 1.png",
+        "alt": "FreshSip Homepage"
+      },
+      {
+        "src": "images/Fruitjuice 2.png",
+        "alt": "FreshSip Product Page"
+      }
+    ],
+    "technologies": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Git",
+      "GitHub"
+    ],
+    "description": "Designed and developed a responsive fruit juice ordering website with a modern user interface, product pages, navigation, reusable layouts, and mobile-friendly design. Implemented a JavaScript shopping cart with quantity updates, item removal, total calculation, and local storage for cart persistence.",
+    "liveDemo": "https://maviyaminza.github.io/FreshSip/",
+    "github": "https://github.com/maviyaminza/FreshSip"
+  }
+]
